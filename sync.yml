@@ -19,7 +19,7 @@ jobs:
           git config user.email "actions@github.com"
 
       - name: Add upstream remote
-        run: git remote add upstream https://github.com/源仓库用户名/项目名.git
+        run: git remote add upstream  https://github.com/Dooy/chatgpt-web-midjourney-proxy
 
       - name: Fetch upstream changes
         run: git fetch upstream
