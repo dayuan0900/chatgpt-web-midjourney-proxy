@@ -1,0 +1,31 @@
+name: Sync Upstream Repository
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 每天一次同步，可以根据需要调整频率
+  workflow_dispatch:  # 允许手动触发同步
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Git
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+      - name: Add upstream remote
+        run: git remote add upstream https://github.com/源仓库用户名/项目名.git
+
+      - name: Fetch upstream changes
+        run: git fetch upstream
+
+      - name: Merge changes from upstream
+        run: git merge upstream/main
+
+      - name: Push changes to GitHub
+        run: git push origin main
